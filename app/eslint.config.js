@@ -20,4 +20,19 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  // Relax rules for shadcn/ui component files (these are generated components)
+  {
+    files: [
+      '**/components/ui/*.tsx',
+      '**/components/ui/**/*.tsx',
+    ],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
+      'react-hooks/purity': 'off', // Allow Math.random in useRef for skeleton loading
+    },
+  },
 ])
