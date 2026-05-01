@@ -25,6 +25,7 @@ export default defineConfig([
     files: [
       '**/components/ui/*.tsx',
       '**/components/ui/**/*.tsx',
+      '**/Router.tsx',
     ],
     rules: {
       'react-refresh/only-export-components': 'off',
