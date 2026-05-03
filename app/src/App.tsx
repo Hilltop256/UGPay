@@ -1,21 +1,22 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import DashboardPage from "./pages/DashboardPage"
+import TaxpayersPage from "./pages/TaxpayersPage"
+import TransactionsPage from "./pages/TransactionsPage"
+import ConfigurationPage from "./pages/ConfigurationPage"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/taxpayers" element={<TaxpayersPage />} />
+        <Route path="/transactions" element={<TransactionsPage />} />
+        <Route path="/configuration" element={<ConfigurationPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
