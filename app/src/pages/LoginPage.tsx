@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useNavigate, Link, useSearchParams } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -20,6 +20,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [selectedAgency, setSelectedAgency] = useState("")
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const agency = searchParams.get("agency")
+    if (agency) {
+      setSelectedAgency(agency)
+    }
+  }, [searchParams])
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,6 +36,12 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
+      <Link to="/" className="mb-4 flex items-center gap-2 text-sm text-slate-400 transition hover:text-white">
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Home
+      </Link>
       <div className="mb-8 text-center">
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 shadow-lg shadow-blue-600/20">
           <span className="text-3xl font-bold text-white">U</span>
