@@ -24,38 +24,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Search, Filter, Download, Receipt } from "lucide-react"
+import { Search, Filter, Download, ArrowUpRight, AlertCircle, CheckCircle, XCircle } from "lucide-react"
 
 const transactions = [
-  { id: "TXN-001", taxpayer: "John Mukasa", nin: "CM81023456GH78", type: "Property Tax", amount: "UGX 350,000", method: "MTN MoMo", status: "completed", date: "2024-02-25", receipt: "RCP-2024-001" },
-  { id: "TXN-002", taxpayer: "Sarah Nalubega", nin: "CM90045678GH12", type: "Trading License", amount: "UGX 150,000", method: "Airtel Money", status: "pending", date: "2024-02-25", receipt: "—" },
-  { id: "TXN-003", taxpayer: "David Okello", nin: "CM85067890GH34", type: "Service Fee", amount: "UGX 75,000", method: "MTN MoMo", status: "completed", date: "2024-02-24", receipt: "RCP-2024-003" },
-  { id: "TXN-004", taxpayer: "Grace Achieng", nin: "CM92089012GH56", type: "Vehicle License", amount: "UGX 120,000", method: "Bank Transfer", status: "failed", date: "2024-02-24", receipt: "—" },
-  { id: "TXN-005", taxpayer: "Peter Ssemakula", nin: "CM87001234GH78", type: "Property Tax", amount: "UGX 420,000", method: "MTN MoMo", status: "completed", date: "2024-02-23", receipt: "RCP-2024-005" },
-  { id: "TXN-006", taxpayer: "Faith Namugga", nin: "CM93023456GH90", type: "Trading License", amount: "UGX 200,000", method: "Airtel Money", status: "completed", date: "2024-02-22", receipt: "RCP-2024-006" },
-  { id: "TXN-007", taxpayer: "Robert Kibuuka", nin: "CM84045678GH12", type: "Service Fee", amount: "UGX 95,000", method: "MTN MoMo", status: "pending", date: "2024-02-22", receipt: "—" },
-  { id: "TXN-008", taxpayer: "Christine Atim", nin: "CM91067890GH34", type: "Property Tax", amount: "UGX 580,000", method: "Bank Transfer", status: "completed", date: "2024-02-21", receipt: "RCP-2024-008" },
-  { id: "TXN-009", taxpayer: "John Mukasa", nin: "CM81023456GH78", type: "Vehicle License", amount: "UGX 180,000", method: "Airtel Money", status: "completed", date: "2024-02-20", receipt: "RCP-2024-009" },
-  { id: "TXN-010", taxpayer: "Sarah Nalubega", nin: "CM90045678GH12", type: "Trading License", amount: "UGX 150,000", method: "MTN MoMo", status: "failed", date: "2024-02-19", receipt: "—" },
+  { id: "TXN-0412", taxpayer: "John Mukasa", nin: "CM810234567012", type: "Property Tax", amount: "UGX 350,000", method: "MTN MoMo", status: "completed", reconciliation: "Reconciled", date: "2024-02-25", receipt: "RCP-2024-412" },
+  { id: "TXN-0411", taxpayer: "Sarah Nalubega", nin: "CM900456781234", type: "Trading License", amount: "UGX 150,000", method: "Airtel Money", status: "completed", reconciliation: "Reconciled", date: "2024-02-25", receipt: "RCP-2024-411" },
+  { id: "TXN-0410", taxpayer: "David Okello", nin: "CM850678901256", type: "Service Levy", amount: "UGX 75,000", method: "MTN MoMo", status: "completed", reconciliation: "Pending", date: "2024-02-25", receipt: "RCP-2024-410" },
+  { id: "TXN-0409", taxpayer: "Grace Achieng", nin: "CM920890121278", type: "Vehicle License", amount: "UGX 120,000", method: "Bank", status: "completed", reconciliation: "Reconciled", date: "2024-02-24", receipt: "RCP-2024-409" },
+  { id: "TXN-0408", taxpayer: "Peter Ssemakula", nin: "CM870012341290", type: "Property Tax", amount: "UGX 420,000", method: "MTN MoMo", status: "failed", reconciliation: "Unmatched", date: "2024-02-24", receipt: "—" },
+  { id: "TXN-0407", taxpayer: "Faith Namugga", nin: "CM930234561212", type: "Market Dues", amount: "UGX 50,000", method: "Cash", status: "completed", reconciliation: "Reconciled", date: "2024-02-24", receipt: "RCP-2024-407" },
+  { id: "TXN-0406", taxpayer: "Robert Kibuuka", nin: "CM840456781234", type: "Trading License", amount: "UGX 200,000", method: "Airtel Money", status: "completed", reconciliation: "Reconciled", date: "2024-02-24", receipt: "RCP-2024-406" },
+  { id: "TXN-0405", taxpayer: "Christine Atim", nin: "CM910678901256", type: "Property Tax", amount: "UGX 580,000", method: "Bank", status: "completed", reconciliation: "Reconciled", date: "2024-02-23", receipt: "RCP-2024-405" },
+  { id: "TXN-0404", taxpayer: "John Mukasa", nin: "CM810234567012", type: "Vehicle License", amount: "UGX 180,000", method: "Airtel Money", status: "completed", reconciliation: "Reconciled", date: "2024-02-23", receipt: "RCP-2024-404" },
+  { id: "TXN-0403", taxpayer: "Sarah Nalubega", nin: "CM900456781234", type: "Service Levy", amount: "UGX 95,000", method: "MTN MoMo", status: "completed", reconciliation: "Pending", date: "2024-02-23", receipt: "RCP-2024-403" },
+  { id: "TXN-0402", taxpayer: "Ivan Sserwanga", nin: "CM880123451278", type: "Trading License", amount: "UGX 250,000", method: "Agent", status: "completed", reconciliation: "Reconciled", date: "2024-02-22", receipt: "RCP-2024-402" },
+  { id: "TXN-0401", taxpayer: "Nancy Akello", nin: "CM960567891290", type: "Property Tax", amount: "UGX 620,000", method: "MTN MoMo", status: "failed", reconciliation: "Unmatched", date: "2024-02-22", receipt: "—" },
 ]
 
 export default function TransactionsPage() {
   const [search, setSearch] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
+  const [reconFilter, setReconFilter] = useState("all")
 
   const filtered = transactions.filter((txn) => {
     const matchSearch =
       txn.taxpayer.toLowerCase().includes(search.toLowerCase()) ||
       txn.id.toLowerCase().includes(search.toLowerCase()) ||
-      txn.receipt.toLowerCase().includes(search.toLowerCase())
+      txn.receipt.toLowerCase().includes(search.toLowerCase()) ||
+      txn.nin.toLowerCase().includes(search.toLowerCase())
     const matchStatus = statusFilter === "all" || txn.status === statusFilter
-    return matchSearch && matchStatus
+    const matchRecon = reconFilter === "all" || txn.reconciliation === reconFilter
+    return matchSearch && matchStatus && matchRecon
   })
 
-  const totalAmount = filtered.reduce((sum, t) => {
-    const num = parseInt(t.amount.replace(/[^0-9]/g, ""))
-    return t.status === "completed" ? sum + num : sum
-  }, 0)
+  const totalCollected = transactions.filter(t => t.status === "completed").length
+  const pendingRecon = transactions.filter(t => t.reconciliation === "Pending").length
+  const failedReversed = transactions.filter(t => t.status === "failed").length
+  const reconciledCount = transactions.filter(t => t.reconciliation === "Reconciled").length
+  const reconRate = Math.round((reconciledCount / transactions.length) * 100)
 
   return (
     <div className="space-y-6">
@@ -66,42 +72,49 @@ export default function TransactionsPage() {
         </div>
         <Button variant="outline">
           <Download className="mr-2 h-4 w-4" />
-          Export CSV
+          Export
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Transactions</CardTitle>
-            <Receipt className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Total Collected</CardTitle>
+            <CheckCircle className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{transactions.length}</div>
-            <p className="text-xs text-muted-foreground">All time</p>
+            <div className="text-2xl font-bold text-green-600">{totalCollected}</div>
+            <p className="text-xs text-muted-foreground">Successful transactions</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Completed</CardTitle>
-            <Badge variant="default">{transactions.filter((t) => t.status === "completed").length}</Badge>
+            <CardTitle className="text-sm font-medium">Pending Reconciliation</CardTitle>
+            <AlertCircle className="h-4 w-4 text-amber-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">UGX {(totalAmount / 1000000).toFixed(2)}M</div>
-            <p className="text-xs text-muted-foreground">Revenue collected</p>
+            <div className="text-2xl font-bold text-amber-600">{pendingRecon}</div>
+            <p className="text-xs text-muted-foreground">Awaiting bank match</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending / Failed</CardTitle>
-            <Badge variant="secondary">{transactions.filter((t) => t.status !== "completed").length}</Badge>
+            <CardTitle className="text-sm font-medium">Failed / Reversed</CardTitle>
+            <XCircle className="h-4 w-4 text-red-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {transactions.filter((t) => t.status === "pending").length} pending,{" "}
-              {transactions.filter((t) => t.status === "failed").length} failed
-            </div>
+            <div className="text-2xl font-bold text-red-600">{failedReversed}</div>
             <p className="text-xs text-muted-foreground">Requires attention</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Reconciliation Rate</CardTitle>
+            <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{reconRate}%</div>
+            <p className="text-xs text-muted-foreground">{reconciledCount} of {transactions.length} matched</p>
           </CardContent>
         </Card>
       </div>
@@ -112,11 +125,11 @@ export default function TransactionsPage() {
           <CardDescription>Search and filter payment history</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="relative flex-1">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search by name, ID, or receipt..."
+                placeholder="Search by name, ID, NIN, or receipt..."
                 className="pl-9"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -133,6 +146,17 @@ export default function TransactionsPage() {
                 <SelectItem value="failed">Failed</SelectItem>
               </SelectContent>
             </Select>
+            <Select value={reconFilter} onValueChange={setReconFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Reconciliation" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Status</SelectItem>
+                <SelectItem value="Reconciled">Reconciled</SelectItem>
+                <SelectItem value="Pending">Pending</SelectItem>
+                <SelectItem value="Unmatched">Unmatched</SelectItem>
+              </SelectContent>
+            </Select>
             <Button variant="outline" size="icon">
               <Filter className="h-4 w-4" />
             </Button>
@@ -140,13 +164,13 @@ export default function TransactionsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>ID</TableHead>
+                <TableHead>Transaction ID</TableHead>
                 <TableHead>Taxpayer</TableHead>
-                <TableHead>Type</TableHead>
+                <TableHead>Tax Type</TableHead>
                 <TableHead>Amount</TableHead>
-                <TableHead>Method</TableHead>
+                <TableHead>Payment Method</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Receipt</TableHead>
+                <TableHead>Reconciliation</TableHead>
                 <TableHead>Date</TableHead>
               </TableRow>
             </TableHeader>
@@ -162,21 +186,37 @@ export default function TransactionsPage() {
                   </TableCell>
                   <TableCell>{txn.type}</TableCell>
                   <TableCell className="font-medium">{txn.amount}</TableCell>
-                  <TableCell>{txn.method}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className="text-xs">
+                      {txn.method}
+                    </Badge>
+                  </TableCell>
                   <TableCell>
                     <Badge
                       variant={
                         txn.status === "completed"
                           ? "default"
                           : txn.status === "pending"
-                          ? "secondary"
-                          : "destructive"
+                            ? "secondary"
+                            : "destructive"
                       }
                     >
                       {txn.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="font-mono text-sm">{txn.receipt}</TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={
+                        txn.reconciliation === "Reconciled"
+                          ? "default"
+                          : txn.reconciliation === "Pending"
+                            ? "secondary"
+                            : "destructive"
+                      }
+                    >
+                      {txn.reconciliation}
+                    </Badge>
+                  </TableCell>
                   <TableCell className="text-muted-foreground">{txn.date}</TableCell>
                 </TableRow>
               ))}

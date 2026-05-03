@@ -5,10 +5,20 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Badge } from "@/components/ui/badge"
+import { agencies } from "@/store/agencies"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [selectedAgency, setSelectedAgency] = useState("")
   const navigate = useNavigate()
 
   const handleLogin = (e: React.FormEvent) => {
@@ -23,16 +33,38 @@ export default function LoginPage() {
           <span className="text-3xl font-bold text-white">U</span>
         </div>
         <h1 className="text-3xl font-bold text-white">UGPAY</h1>
-        <p className="text-sm text-slate-400">Government Payments Platform</p>
+        <p className="text-sm text-slate-400">Municipal Revenue Collection Platform</p>
       </div>
 
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Sign in</CardTitle>
-          <CardDescription>Enter your credentials to access the agency portal</CardDescription>
+          <CardDescription>Select your municipality and enter your credentials</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="agency">Municipality</Label>
+              <Select value={selectedAgency} onValueChange={setSelectedAgency}>
+                <SelectTrigger id="agency">
+                  <SelectValue placeholder="Select municipality" />
+                </SelectTrigger>
+                <SelectContent>
+                  {agencies.map((agency) => (
+                    <SelectItem key={agency.id} value={agency.id}>
+                      <div className="flex items-center justify-between w-full gap-2">
+                        <span className="font-medium">{agency.code}</span>
+                        <span className="text-muted-foreground truncate">{agency.name.replace(agency.code, "").replace(/Council|Authority|City/g, "").trim()}</span>
+                        <Badge variant={agency.type === "capital" ? "default" : "secondary"} className="ml-auto text-[10px] shrink-0">
+                          {agency.type === "capital" ? "Capital City" : agency.type === "municipal" ? "Municipal" : agency.type === "district" ? "District" : "Sub-county"}
+                        </Badge>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <Separator />
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
